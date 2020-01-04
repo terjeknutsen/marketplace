@@ -6,7 +6,7 @@ namespace Marketplace.Domain
     public sealed class ClassifiedAdTitle : Value<ClassifiedAdTitle>
     {
         private readonly string value;
-        private ClassifiedAdTitle(string value)
+        internal ClassifiedAdTitle(string value)
         {
             if (value.Length > 100)
                 throw new ArgumentOutOfRangeException("Title cannot be longer than 100 characters", nameof(value));
@@ -18,6 +18,7 @@ namespace Marketplace.Domain
         }
 
         public static ClassifiedAdTitle FromString(string title) => new ClassifiedAdTitle(title);
+        public static implicit operator string(ClassifiedAdTitle self)=> self.value;
 
     }
 }

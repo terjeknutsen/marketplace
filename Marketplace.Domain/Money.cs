@@ -6,7 +6,8 @@ namespace Marketplace.Domain
     public class Money : Value<Money>
     {
         private const string DefaultCurrency = "EUR";
-        private Money(decimal amount, CurrencyDetails currency)
+  
+        protected Money(decimal amount, CurrencyDetails currency)
         {
             Amount = amount;
             Currency = currency;
@@ -42,6 +43,7 @@ namespace Marketplace.Domain
          }
         public static Money operator +(Money summand1, Money summand2) => summand1.Add(summand2);
         public static Money operator -(Money minuend, Money subtrahend) => minuend.Subtract(subtrahend);
+        public static implicit operator decimal(Money self)=> self.Amount;
 
         protected override bool CompareProperties(Money other)
         {

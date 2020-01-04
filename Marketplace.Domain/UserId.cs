@@ -14,5 +14,6 @@ namespace Marketplace.Domain
         {
             return _value.Equals(other._value);
         }
+        public static implicit operator Guid(UserId self) => self._value;
     }
 }
